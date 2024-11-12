@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Places from './components/Places';
-import Booking from './components/Booking';
+import BookingForm from './components/BookingForm';
 import Login from './components/Login';
 import SignIn from './components/Signin';
 
@@ -29,9 +29,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/places" element={<Places />} />
-        <Route path="/booking" element={<Booking />} />
+        
+        {/* Protected Route for Booking */}
+        <Route path="/book-now/:place" element={isAuthenticated ? <BookingForm /> : <Login onLogin={handleLogin} />} />
+        
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signin" element={<SignIn onLogin={handleLogin} />} /> {/* Pass the login handler */}
+        <Route path="/signin" element={<SignIn onLogin={handleLogin} />} />
       </Routes>
       <Footer />
     </Router>
